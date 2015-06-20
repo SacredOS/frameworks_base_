@@ -4620,5 +4620,6 @@ message MetricsEvent {
 
     //Sacred
     SACRED = 1150;
+    TILE_LOCATION_DETAIL = 1151;
   }
 }
