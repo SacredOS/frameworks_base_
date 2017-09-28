@@ -43,5 +43,10 @@
     <!-- Qs visibility -->
     <dimen name="qs_tile_height_wo_label">48dp</dimen>
 
+    <!-- Screen Recorder -->
     <dimen name="screenrecord_hint_size">48dp</dimen>
+
+    <!-- QuickSettingHeader scrollbar-->
+    <dimen name="qs_scroller_margin">8dp</dimen>
+
 </resources>
