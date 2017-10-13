@@ -15,14 +15,16 @@
 
 package com.android.systemui.qs.tiles;
 
+import android.content.pm.ActivityInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.service.quicksettings.Tile;
+import android.widget.Toast;
 
-import com.android.internal.util.aospextended.AEXUtils;
+import com.android.internal.util.sacredos.SACREDUtils;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.plugins.qs.QSTile.BooleanState;
@@ -38,7 +40,7 @@ public class PictureInPictureTile extends QSTileImpl<BooleanState> {
 
     @Override
     public int getMetricsCategory() {
-        return MetricsEvent.EXTENSIONS;
+        return MetricsEvent.SACRED;
     }
 
     @Override
@@ -49,7 +51,13 @@ public class PictureInPictureTile extends QSTileImpl<BooleanState> {
     @Override
     public void handleClick() {
         mHost.collapsePanels();
-        AEXUtils.sendKeycode(171);
+        ActivityInfo ai = SACREDUtils.getRunningActivityInfo(mContext);
+        if (ai != null && !ai.supportsPictureInPicture()) {
+            Toast.makeText(mContext, mContext.getString(
+                    R.string.quick_settings_pip_tile_app_na), Toast.LENGTH_LONG).show();
+            return;
+        }
+        SACREDUtils.sendKeycode(171);
     }
 
     @Override
