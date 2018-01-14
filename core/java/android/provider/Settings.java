@@ -4578,8 +4578,12 @@ public final class Settings {
         public static final String SCREENRECORD_QUALITY_MODE = "screenrecord_quality_mode";
 
         /**
-         * show carrier in statusbar. The value is
-         * int (1: Show or 0: Hide).
+         * Status bar carrier label
+         * 0: Hide
+         * 1: Display on keyguard status bar
+         * 2: Display on Normal status bar
+         * 3: Enabled for both
+         * @hide
          */
         public static final String STATUS_BAR_CARRIER = "status_bar_carrier";
 
