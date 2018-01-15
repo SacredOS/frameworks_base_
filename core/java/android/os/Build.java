@@ -51,7 +51,7 @@ public class Build {
     /**
      * @hide
      */
-    public static final String SACRED_DISPLAY_VERSION = getString("ro.sacred.os.display.version");
+    public static final String SACRED_DISPLAY_VERSION = getString("ro.sacred.display.version");
 
     /** The name of the overall product. */
     public static final String PRODUCT = getString("ro.product.name");
