@@ -82,5 +82,7 @@
 
   <java-symbol type="integer" name="config_buttonBrightnessSettingDefault" />
   <java-symbol type="bool" name="config_deviceHasVariableButtonBrightness" />
+
+  <java-symbol type="bool" name="config_canForceDozeNotifications" />
 </resources>
 
