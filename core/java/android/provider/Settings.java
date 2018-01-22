@@ -4508,6 +4508,13 @@ public final class Settings {
          */
         public static final String SCREENSHOT_DEFAULT_MODE = "screenshot_default_mode";
 
+        /**
+         * Change fonts for the system lockscreen clock widget
+         *
+         * @hide
+         */
+        public static final String LOCK_CLOCK_FONT = "lock_clock_font";
+
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
