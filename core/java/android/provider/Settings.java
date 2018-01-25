@@ -4065,12 +4065,6 @@ public final class Settings {
         public static final String VIBRATE_ON_DISCONNECT = "vibrate_on_disconnect";
 
         /**
-         * Disable dashboard conditions in settings
-         * @hide
-         */
-        public static final String ENABLE_CONDITIONS = "enable_conditions";
-
-        /**
          * Whether to display sound panel in the power menu
          *
          * @hide
