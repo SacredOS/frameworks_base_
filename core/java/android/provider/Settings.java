@@ -4047,12 +4047,6 @@ public final class Settings {
         public static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
 
         /**
-         * Disable dashboard suggestions in settings
-         * @hide
-         */
-        public static final String ENABLE_SUGGESTIONS = "enable_suggestions";
-
-        /**
          * Whether the phone vibrates on call connect
          * @hide
          */
@@ -4069,7 +4063,6 @@ public final class Settings {
          * @hide
          */
         public static final String VIBRATE_ON_DISCONNECT = "vibrate_on_disconnect";
-
 
         /**
          * Disable dashboard conditions in settings
