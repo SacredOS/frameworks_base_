@@ -6530,6 +6530,12 @@ public class StatusBar extends SystemUI implements DemoMode,
             mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_QUICKBAR_SCROLL_ENABLED),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SHOW_BATTERY_PERCENT),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.STATUS_BAR_BATTERY_STYLE),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -6585,7 +6591,12 @@ public class StatusBar extends SystemUI implements DemoMode,
                 setForceAmbient();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.QS_QUICKBAR_SCROLL_ENABLED))) {
-                setQuickStatusBarHeader(); 
+                setQuickStatusBarHeader();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.SHOW_BATTERY_PERCENT))
+                    || uri.equals(Settings.Secure.getUriFor(
+                    Settings.Secure.STATUS_BAR_BATTERY_STYLE))) {
+                updateBatterySettings();
             }
         }
 
@@ -6601,6 +6612,19 @@ public class StatusBar extends SystemUI implements DemoMode,
             updateTheme();
             setForceAmbient();
             setQuickStatusBarHeader();
+            updateBatterySettings();
+        }
+    }
+
+    private void updateBatterySettings() {
+        if (mStatusBarView != null) {
+            mStatusBarView.updateBatterySettings();
+        }
+        if (mKeyguardStatusBar != null) {
+            mKeyguardStatusBar.updateBatterySettings();
+        }
+        if (mQuickStatusBarHeader != null) {
+            mQuickStatusBarHeader.updateBatterySettings();
         }
     }
 
