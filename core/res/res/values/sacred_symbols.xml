@@ -61,6 +61,9 @@
   <!-- Whether device has dash charging support -->
   <java-symbol type="bool" name="config_hasDashCharger" />
 
+  <!-- Whether device has turbo power charging support -->
+  <java-symbol type="bool" name="config_hasTurboPowerCharger" />
+
   <!-- Whether device supports an alt. ambient display -->
   <java-symbol type="bool" name="config_alt_ambient_display"/>
 
