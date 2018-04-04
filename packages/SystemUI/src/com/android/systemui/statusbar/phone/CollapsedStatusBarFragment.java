@@ -73,6 +73,8 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
 
     private View mClock;
     private View mLeftClock;
+    private LinearLayout mCenterClockLayout;
+    private View mCenterClock;
 
     private int mTickerEnabled;
     private TickerObserver mTickerObserver;
@@ -154,6 +156,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             updateSettings(true);
             ((Clock)mClock).updateSettings();
             ((Clock)mLeftClock).updateSettings();
+            ((Clock)mCenterClock).updateSettings();
             mStatusBarComponent.updateQsbhClock();
 
             mStatusBarComponent.updateBatterySettings();
@@ -186,6 +189,8 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         mSignalClusterView = mStatusBar.findViewById(R.id.signal_cluster);
         mClock = mStatusBar.findViewById(R.id.clock);
         mLeftClock = mStatusBar.findViewById(R.id.left_clock);
+        mCenterClockLayout = (LinearLayout) mStatusBar.findViewById(R.id.center_clock_layout);
+        mCenterClock = mStatusBar.findViewById(R.id.center_clock);
         Dependency.get(DarkIconDispatcher.class).addDarkReceiver(mSignalClusterView);
         mCustomCarrierLabel = mStatusBar.findViewById(R.id.statusbar_carrier_text);
         updateSettings(false);
@@ -295,14 +300,23 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
 
     public void hideSystemIconArea(boolean animate) {
         animateHide(mSystemIconArea, animate, true);
+        if (((Clock)mCenterClock).isEnabled()) {
+        animateHide(mCenterClockLayout, animate,false);
+        }
     }
 
     public void showSystemIconArea(boolean animate) {
         animateShow(mSystemIconArea, animate);
+        if (((Clock)mCenterClock).isEnabled()) {
+        animateShow(mCenterClockLayout, animate);
+        }
     }
 
     public void hideNotificationIconArea(boolean animate) {
         animateHide(mNotificationIconAreaInner, animate, true);
+        if (((Clock)mCenterClock).isEnabled()) {
+        animateHide(mCenterClockLayout, animate,false);
+        }
         if (((Clock)mLeftClock).isEnabled()) {
             animateHide(mLeftClock, animate, true);
         }
@@ -310,6 +324,9 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
 
     public void showNotificationIconArea(boolean animate) {
         animateShow(mNotificationIconAreaInner, animate);
+        if (((Clock)mCenterClock).isEnabled()) {
+        animateShow(mCenterClockLayout, animate);
+        }
         if (((Clock)mLeftClock).isEnabled()) {
             animateShow(mLeftClock, animate);
         }
