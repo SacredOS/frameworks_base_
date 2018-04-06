@@ -385,7 +385,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     @Override
     public boolean onLongClick(View v) {
         if (v == mSettingsButton) {
-            startCelestialwaysActivity();
+            startCelestialWaysActivity();
         } else if (v == mRunningServicesButton) {
             MetricsLogger.action(mContext,
                     mExpanded ? MetricsProto.MetricsEvent.ACTION_QS_EXPANDED_SETTINGS_LAUNCH
@@ -395,10 +395,10 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         return false;
     }
 
-    private void startCelestialwaysActivity() {
+    private void startCelestialWaysActivity() {
         Intent eIntent = new Intent(Intent.ACTION_MAIN);
         eIntent.setClassName("com.android.settings",
-            "com.android.settings.Settings$CelestialwaysActivity");
+            "com.android.settings.Settings$CelestialSettingsActivity");
         mActivityStarter.startActivity(eIntent, true /* dismissShade */);
     }
 
