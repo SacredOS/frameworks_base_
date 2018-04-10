@@ -101,7 +101,6 @@ public class KeyguardStatusView extends GridLayout {
                 if (DEBUG) Slog.v(TAG, "refresh statusview showing:" + showing);
                 refresh();
                 updateOwnerInfo();
-                refreshLockFont();
             }
         }
 
@@ -122,7 +121,6 @@ public class KeyguardStatusView extends GridLayout {
         public void onUserSwitchComplete(int userId) {
             refresh();
             updateOwnerInfo();
-            refreshLockFont();
         }
     };
 
@@ -186,7 +184,6 @@ public class KeyguardStatusView extends GridLayout {
         setEnableMarquee(shouldMarquee);
         refresh();
         updateOwnerInfo();
-        refreshLockFont();
 
         mSettingsObserver = new SettingsObserver(new Handler());
     }
@@ -230,6 +227,7 @@ public class KeyguardStatusView extends GridLayout {
 
         refreshTime();
         refreshAlarmStatus(nextAlarm);
+        refreshLockFont();
     }
 
     void refreshAlarmStatus(AlarmManager.AlarmClockInfo nextAlarm) {
@@ -404,38 +402,38 @@ public class KeyguardStatusView extends GridLayout {
     }
 
     class SettingsObserver extends ContentObserver {
-         SettingsObserver(Handler handler) {
-             super(handler);
-         }
- 
-         void observe() {
-             ContentResolver resolver = mContext.getContentResolver();
-             resolver.registerContentObserver(Settings.System.getUriFor(
-                     Settings.System.LOCK_CLOCK_FONT), false, this, UserHandle.USER_ALL);
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
 
-             update();
-         }
- 
-         void unobserve() {
-             ContentResolver resolver = mContext.getContentResolver();
-             resolver.unregisterContentObserver(this);
-         }
- 
-         @Override
-         public void onChange(boolean selfChange, Uri uri) {
-             if (uri.equals(Settings.System.getUriFor(
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCK_CLOCK_FONT),
+                    false, this, UserHandle.USER_ALL);
+            update();
+        }
+
+        void unobserve() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.unregisterContentObserver(this);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            super.onChange(selfChange, uri);
+            if (uri.equals(Settings.System.getUriFor(
                      Settings.System.LOCK_CLOCK_FONT))) {
                  refreshLockFont();
-             }
-             update();
-         }
- 
-         public void update() {
+            }
+            update();
+        }
+
+        public void update() {
            ContentResolver resolver = mContext.getContentResolver();
            int currentUserId = ActivityManager.getCurrentUser();
- 
 
-			 refreshLockFont();
-         }
-     }
+                 refreshLockFont();
+        }
+    }
 }
