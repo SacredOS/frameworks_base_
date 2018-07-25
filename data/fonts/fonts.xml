@@ -100,7 +100,7 @@
     </family>
 
     <family name="sacred">
-        <font weight="300" style="normal">Sacred.ttf</font>
+        <font weight="400" style="normal">Sacred.ttf</font>
     </family>
 
     <!-- fallback fonts -->

@@ -314,7 +314,7 @@ public class KeyguardStatusView extends GridLayout {
         int lockClockFont = isPrimary ? getLockClockFont() : 0;
 
         if (lockClockFont == 0) {
-            mClockView.setTypeface(Typeface.create("sans-serif-thin", Typeface.NORMAL));
+            mClockView.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
         }
         if (lockClockFont == 1) {
             mClockView.setTypeface(Typeface.create("sacred", Typeface.NORMAL));
